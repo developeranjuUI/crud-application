@@ -19,6 +19,7 @@
           "options": {
             "outputPath": "dist/crud",
             "index": "src/index.html",
+            "baseHref": "/crud/",
             "main": "src/main.ts",
             "polyfills": [
               "zone.js"
