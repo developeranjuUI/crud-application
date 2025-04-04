@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crud';
+
+  constructor(public themeService: ThemeService){ }
+
+  toggleDarkMode() {
+    const htmlElement = document.documentElement;
+    htmlElement.classList.toggle('dark');
+  }
 }

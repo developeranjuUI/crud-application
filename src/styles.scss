@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Customize Toastr Notifications with Tailwind */
+.toast-container {
+    @apply fixed z-50 p-4 space-y-4;
+}
+  
+
+.toast-success {
+    @apply bg-green-500 text-white p-4 rounded-lg shadow-lg;
+}
+  
+.toast-error {
+    @apply bg-red-500 text-white p-4 rounded-lg shadow-lg;
+}
+  
+.toast-warning {
+    @apply bg-yellow-400 text-black p-4 rounded-lg shadow-lg;
+}
+  
+.toast-info {
+    @apply bg-blue-500 text-white p-4 rounded-lg shadow-lg;
+}
+  
+.toast {
+    @apply px-4 py-3 border border-gray-200 rounded-lg shadow-md;
+}
+  
+.toast-close-button {
+    @apply text-white font-bold hover:text-gray-200 cursor-pointer;
+}
+  
+.toast-top-right {
+    @apply top-5 right-5;
+}
+  
+.toast-bottom-right {
+    @apply bottom-5 right-5;
+}
+  
+  

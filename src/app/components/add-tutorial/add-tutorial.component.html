@@ -1,0 +1,103 @@
+<!-- <div class=" mt-5">
+    <h1 class="mb-3 text-center">Add Tutorial</h1>
+      <div class="submit-form">
+        <div *ngIf="!submitted">
+          <div class="form-group mb-3">
+            <label for="title" class="mb-2">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              required
+              [(ngModel)]="tutorials.title"
+              name="title"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="description" class="mb-2">Description</label>
+            <input
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="tutorials.description"
+              name="description"
+            />
+          </div>
+          <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+        </div>
+        <div *ngIf="submitted">
+          <h4>Tutorial was submitted successfully!</h4>
+          <button class="btn btn-success" (click)="newTutorial()">Add</button>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="bg-white text-black dark:bg-gray-900 dark:text-white p-4 rounded">
+      <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Add New Tutorial</h2>
+      
+        <form [formGroup]="tutorialForm" (ngSubmit)="saveTutorial()" class="space-y-4">
+          <!-- Title Field -->
+          <div>
+            <label class="block text-gray-700 font-semibold">Title</label>
+            <input
+              type="text"
+              formControlName="title"
+              class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter title"
+            />
+            <div *ngIf="submitted && tutorialForm.get('title')?.errors" class="text-red-500 text-sm mt-1">
+              <span *ngIf="tutorialForm.get('title')?.errors?.['required']">⚠ Title is required.</span>
+              <span *ngIf="tutorialForm.get('title')?.errors?.['minlength']">⚠ Title must be at least 3 characters.</span>
+            </div>
+          </div>
+      
+          <!-- Description Field -->
+          <div>
+            <label class="block text-gray-700 font-semibold">Description</label>
+            <textarea
+              formControlName="description"
+              class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter description"
+              rows="3"
+            ></textarea>
+            <div *ngIf="submitted && tutorialForm.get('description')?.errors" class="text-red-500 text-sm mt-1">
+              <span *ngIf="tutorialForm.get('description')?.errors?.['required']">⚠ Description is required.</span>
+              <span *ngIf="tutorialForm.get('description')?.errors?.['minlength']">⚠ Description must be at least 10 characters.</span>
+            </div>
+          </div>
+      
+          <!-- Published Checkbox -->
+          <div class="flex items-center">
+            <input type="checkbox" formControlName="published" class="mr-2">
+            <label class="text-gray-700">Published</label>
+          </div>
+      
+          <!-- Submit Button -->
+          <!-- [disabled]="tutorialForm.invalid" -->
+          <button
+            type="submit" [disabled]="isLoading"
+            class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400">
+            <span *ngIf="!isLoading">Add Tutorial</span>
+            <span *ngIf="isLoading" class="flex items-center">
+              <svg class="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="white" stroke-width="4"></circle>
+                <path class="opacity-75" fill="white" d="M4 12a8 8 0 018-8v8z"></path>
+              </svg>
+              Processing...
+            </span>
+          </button>
+        </form>
+
+        <!-- Success Message -->
+        <div *ngIf="isSubmittedSuccessfully" class="mt-4 p-3 bg-green-100 text-green-800 rounded-md">
+          Tutorial added successfully!
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="mt-4 p-3 bg-red-100 text-red-800 rounded-md">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+    
